@@ -1,6 +1,8 @@
 const express = require('express');
 const routes = require('./api')
 require('dotenv').config();
+const path = require('path');
+
 
 const app = express();
 
@@ -13,7 +15,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api', routes);
-app.use('/output',express.static('./python/output'))
+app.use('/output',express.static(path.join(__dirname,'python/output')))
 
 app.use((err, req, res, next) => {
     console.log(err);
